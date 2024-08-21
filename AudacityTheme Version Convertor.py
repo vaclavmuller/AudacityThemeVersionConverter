@@ -98,7 +98,7 @@ source_label = tk.Label(root, text="Source Version:")
 source_label.grid(row=2, column=0, sticky="e", padx=5)
 source_version_var = tk.StringVar(root)
 source_version_var.set("32x")  # default value for source version
-source_version_combobox = tk.OptionMenu(root, source_version_var, "32x", "33x", "34x", "35x", "36x")
+source_version_combobox = tk.OptionMenu(root, source_version_var, "13x", "32x", "33x", "34x", "35x", "36x")
 source_version_combobox.grid(row=2, column=1, padx=5, pady=5)
 
 # Label and ComboBox for selecting the target version
@@ -106,7 +106,7 @@ target_label = tk.Label(root, text="Target Version:")
 target_label.grid(row=3, column=0, sticky="e", padx=5)
 target_version_var = tk.StringVar(root)
 target_version_var.set("36x")  # default value for target version
-target_version_combobox = tk.OptionMenu(root, target_version_var, "32x", "33x", "34x", "35x", "36x")
+target_version_combobox = tk.OptionMenu(root, target_version_var, "13x", "32x", "33x", "34x", "35x", "36x")
 target_version_combobox.grid(row=3, column=1, padx=5, pady=5)
 
 # Button to start the conversion process
