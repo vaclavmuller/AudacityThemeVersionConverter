@@ -12,4 +12,4 @@ A Python-based tool for converting Audacity theme versions between different ver
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/AudacityThemeVersionConverter.git
+   git clone https://github.com/vaclavmuller/AudacityThemeVersionConverter.git
