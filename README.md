@@ -1,6 +1,6 @@
 # AudacityTheme Version Converter
 
-A Python-based tool for converting Audacity theme versions between different versions. This tool allows users to select and convert `ImageCache.png` files between different versions of Audacity themes.
+A Python-based tool for converting Audacity theme files between different versions. This tool allows users to select and convert `ImageCache.png` files between different versions of Audacity themes.
 
 ## Features
 
