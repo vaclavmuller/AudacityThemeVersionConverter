@@ -78,12 +78,21 @@ def select_image_cache():
     if source_file:
         image_label.config(text=f"Selected: {os.path.basename(source_file)}")
 
+# Function to load available versions from resources
+def load_versions():
+    resources_path = "resources"
+    component_files = [f for f in os.listdir(resources_path) if f.startswith("components") and f.endswith(".txt")]
+    return [f[len("components"):-len(".txt")] for f in component_files]
+
 # Set up the GUI
 root = tk.Tk()
 root.title("AudacityTheme Version Convertor")
 root.geometry("400x250")  # Adjust the width of the window
 
 source_file = None
+
+# Load available versions dynamically
+available_versions = load_versions()
 
 # Button to select the ImageCache file
 select_button = tk.Button(root, text="Select ImageCache", command=select_image_cache)
@@ -97,16 +106,16 @@ image_label.grid(row=1, column=0, columnspan=2, padx=60, pady=10)
 source_label = tk.Label(root, text="Source Version:")
 source_label.grid(row=2, column=0, sticky="e", padx=5)
 source_version_var = tk.StringVar(root)
-source_version_var.set("32x")  # default value for source version
-source_version_combobox = tk.OptionMenu(root, source_version_var, "13x", "211", "213", "222", "23x", "24x", "30x", "31x", "32x", "33x", "34x", "35x", "36x")
+source_version_var.set(available_versions[0])  # default value for source version (first value)
+source_version_combobox = tk.OptionMenu(root, source_version_var, *available_versions)
 source_version_combobox.grid(row=2, column=1, padx=5, pady=5)
 
 # Label and ComboBox for selecting the target version
 target_label = tk.Label(root, text="Target Version:")
 target_label.grid(row=3, column=0, sticky="e", padx=5)
 target_version_var = tk.StringVar(root)
-target_version_var.set("36x")  # default value for target version
-target_version_combobox = tk.OptionMenu(root, target_version_var, "13x", "211", "213", "222", "23x", "24x", "30x", "31x", "32x", "33x", "34x", "35x", "36x")
+target_version_var.set(available_versions[-1])  # default value for target version (last value)
+target_version_combobox = tk.OptionMenu(root, target_version_var, *available_versions)
 target_version_combobox.grid(row=3, column=1, padx=5, pady=5)
 
 # Button to start the conversion process
@@ -114,3 +123,4 @@ convert_button = tk.Button(root, text="Convert", command=convert_image)
 convert_button.grid(row=4, column=0, columnspan=2, padx=140, pady=20)
 
 root.mainloop()
+
