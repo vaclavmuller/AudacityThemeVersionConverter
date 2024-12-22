@@ -4,7 +4,7 @@ A Python-based tool for converting Audacity theme files between different versio
 
 ## Features
 
-- Convert the theme file for Audacity of different versions. (from version 2.1.1 to 3.6.x).
+- Convert the theme file for Audacity of different versions. (from version 2.1.1 to 3.7.x).
 - Easy-to-use GUI.
 - Outputs the converted `ImageCache.png` file with proper formatting.
 
