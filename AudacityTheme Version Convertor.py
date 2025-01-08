@@ -24,7 +24,7 @@ def split_image(image_path, components_file, output_folder):
     for component, rect in components.items():
         save_component(image, component, rect, output_folder)
 
-# Function to assemble the final image from components with yellow borders
+# Function to assemble the final image from components with yellow borders and adjusted sizes
 def assemble_image(output_path, components_file, temp_folder):
     components = load_components(components_file)
     assembled_image = Image.new('RGBA', (440, 836), '#010101')  # Set the correct image size and background color
@@ -35,7 +35,18 @@ def assemble_image(output_path, components_file, temp_folder):
     for component, rect in components.items():
         try:
             component_image = Image.open(os.path.join(temp_folder, f"{component}.png"))
+            
+            # Calculate the size of the component based on the target rect
+            target_width = rect[2] - rect[0]
+            target_height = rect[3] - rect[1]
+            
+            # Resize the component image if its size does not match the target size
+            if component_image.size != (target_width, target_height):
+                component_image = component_image.resize((target_width, target_height), Image.Resampling.LANCZOS)
+
+            # Paste the resized component onto the assembled image
             assembled_image.paste(component_image, (rect[0], rect[1]))
+
             # Draw the yellow border around the component
             draw.rectangle(
                 [rect[0] - border_width, rect[1] - border_width, rect[2] + border_width - 1, rect[3] + border_width - 1],
