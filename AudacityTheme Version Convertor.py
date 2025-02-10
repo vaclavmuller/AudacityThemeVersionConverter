@@ -24,6 +24,10 @@ def split_image(image_path, components_file, output_folder):
     for component, rect in components.items():
         save_component(image, component, rect, output_folder)
 
+    # If "Colour_TimelineRulerBackground" is missing in source components, create it from "Colour_TrackInfo"
+    if "Colour_TimelineRulerBackground" not in components and "Colour_TrackInfo" in components:
+        save_component(image, "Colour_TimelineRulerBackground", components["Colour_TrackInfo"], output_folder)
+
 # Function to assemble the final image from components with yellow borders and adjusted sizes
 def assemble_image(output_path, components_file, temp_folder):
     components = load_components(components_file)
